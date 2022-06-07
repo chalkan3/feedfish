@@ -1,4 +1,5 @@
-<img src="./assets/feedfish.png" width="350" title="hover text">
+# Gopher Company 
+![alt text](/assets/feedfish.png)
 
 # feedfish
 Custom pipeline like gitlab ci/cd, github actions
