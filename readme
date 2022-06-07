@@ -1,4 +1,4 @@
-![plot](./assets/feedfish.png)
+<img src="./assets/feedfish.png" width="350" title="hover text">
 
 # feedfish
 Custom pipeline like gitlab ci/cd, github actions
