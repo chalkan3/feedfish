@@ -3,24 +3,14 @@
       order: 1
       scripts:
         initial:
-          script: "docker ps && sleep 10"
+          script: "apk add --no-cache git make musl-dev go"
         processing:
-          script: "go build -o frompipeline cmd/main.go"
+          script: "go version"
         proceed: 
-          script: ls
+          script: "echo 'proceed'"
     
-    - name: updater
+    - name: checker
       order: 2
-      scripts:
-        initial:
-          script: ls
-        processing:
-          script: ls -la
-        proceed: 
-          script: ls
-
-    - name: char
-      order: 3
       scripts:
         initial:
           script: echo 'initial'
@@ -28,5 +18,3 @@
           script: echo 'processing'
         proceed: 
           script: echo 'proceed'
-    
-    

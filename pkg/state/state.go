@@ -56,7 +56,7 @@ func (j *Job) Do(processName string) error {
 }
 
 func Shell(script string) {
-	cmd := exec.Command("/bin/bash", "-c", script)
+	cmd := exec.Command("/bin/sh", "-c", script)
 	stdout, err := cmd.Output()
 
 	if err != nil {
