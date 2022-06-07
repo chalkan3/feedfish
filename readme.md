@@ -3,10 +3,21 @@
 
 **Custom pipeline like gitlab ci/cd, github actions**
 
+
+## Stages
+
+| Name | README |
+| ------ | ------ |
+| Initial | Prepare the environment stage|
+| Processing | Processing stage |
+| Proceed | last stage |
+
+
+
 ## Usage:
 
 ### First Step: 
-Fill the .pipeline.yml
+.pipeline.yml  
 
 ```yaml
   steps:
