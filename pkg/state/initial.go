@@ -13,11 +13,12 @@ type Initial struct {
 func (i *Initial) Do(defers chan bool, processName string) {
 	Shell(i.Script)
 	i.Job.SetState(i.Job.Processing)
+	fmt.Println("=================================================================================")
 	defers <- true
 }
 
 func (i *Initial) Prompt(processName string) {
-	fmt.Println("Initializing process", processName)
+	fmt.Println(fmt.Sprintf("=======================Initializing process[%s]=============================", processName), "\n")
 	time.Sleep(time.Second * 3)
 
 }

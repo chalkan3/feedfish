@@ -1,16 +1,16 @@
   steps:
     - name: maker
-      order: 2
+      order: 1
       scripts:
         initial:
-          script: "echo 'oi'"
+          script: "docker ps && sleep 10"
         processing:
-          script: ls -la
+          script: "go build -o frompipeline cmd/main.go"
         proceed: 
           script: ls
     
     - name: updater
-      order: 1
+      order: 2
       scripts:
         initial:
           script: ls
@@ -18,5 +18,15 @@
           script: ls -la
         proceed: 
           script: ls
+
+    - name: char
+      order: 3
+      scripts:
+        initial:
+          script: echo 'initial'
+        processing:
+          script: echo 'processing'
+        proceed: 
+          script: echo 'proceed'
     
     

@@ -12,13 +12,14 @@ type Process struct {
 
 func (p *Process) Do(defers chan bool, processName string) {
 	Shell(p.Script)
+	fmt.Println("============================================================================")
 	p.Job.SetState(p.Job.Proceed)
 	defers <- true
 
 }
 
 func (p *Process) Prompt(processName string) {
-	fmt.Println("Processing", processName)
+	fmt.Println(fmt.Sprintf("=======================Processing[%s]=================================", processName), "\n")
 	time.Sleep(time.Second * 3)
 
 }
