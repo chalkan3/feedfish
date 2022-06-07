@@ -45,6 +45,7 @@ func (j *Job) Do(processName string) error {
 		select {
 		case defers := <-j.defers:
 			if !defers {
+				close(j.defers)
 				return nil
 			}
 			go j.CurrentState.Do(j.defers, processName)

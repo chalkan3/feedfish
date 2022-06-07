@@ -10,7 +10,7 @@ type ProcessTree struct {
 
 func NewProcessTree() *ProcessTree {
 	return &ProcessTree{
-		head: &Node{Key: 0, Process: NewProcess("pre-run", "ls", "ls", "ls")},
+		head: &Node{Key: 0, Process: NewProcess("pre-run", "echo", "echo", "echo")},
 	}
 }
 
@@ -66,8 +66,3 @@ func (n *Node) Search(k int) process {
 
 	return n.Process
 }
-
-// tree := NewProcessTree().
-// 	Insert(100, &Person{Name: "igor"}).
-// 	Insert(2, &Person{Name: "guica"}).
-// 	Insert(40, &Person{Name: "lady"})
