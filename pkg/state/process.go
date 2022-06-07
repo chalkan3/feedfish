@@ -6,13 +6,12 @@ import (
 )
 
 type Process struct {
-	Job *Job
+	Job    *Job
+	Script string
 }
 
 func (p *Process) Do(defers chan bool, processName string) {
-	fmt.Println("processing", processName)
-	time.Sleep(time.Second * 15)
-	fmt.Println("end processing")
+	Shell(p.Script)
 	p.Job.SetState(p.Job.Proceed)
 	defers <- true
 

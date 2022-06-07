@@ -10,11 +10,11 @@ type ProcessTree struct {
 
 func NewProcessTree() *ProcessTree {
 	return &ProcessTree{
-		head: &Node{Key: 0, Process: NewProcess("teste")},
+		head: &Node{Key: 0, Process: NewProcess("pre-run", "ls", "ls", "ls")},
 	}
 }
 
-func (pt *ProcessTree) Insert(k int, p process) *ProcessTree {
+func (pt *ProcessTree) Register(k int, p process) *ProcessTree {
 	pt.head.Insert(k, p)
 	return pt
 }

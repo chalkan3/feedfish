@@ -1,22 +1,31 @@
 package main
 
 import (
+	"io/ioutil"
+	"log"
+	steps "t/internal/steps"
 	runner "t/pkg/runner"
+
+	yaml "gopkg.in/yaml.v3"
 )
 
 func main() {
-	processTree := runner.NewProcessTree().
-		Insert(1, runner.NewProcess("igor")).
-		Insert(2, runner.NewProcess("guica")).
-		Insert(3, runner.NewProcess("mini")).
-		Insert(4, runner.NewProcess("lady")).
-		Insert(5, runner.NewProcess("garrafa")).
-		Insert(6, runner.NewProcess("teste")).
-		Insert(7, runner.NewProcess("kh")).
-		Insert(8, runner.NewProcess("tt")).
-		Insert(9, runner.NewProcess("mms")).
-		Insert(10, runner.NewProcess("sorvete")).
-		Insert(11, runner.NewProcess("bateria"))
+	var pipeline steps.Pipeline
+
+	yamlFile, err := ioutil.ReadFile(".pipeline.yml")
+	if err != nil {
+		log.Printf("yamlFile.Get err   #%v ", err)
+	}
+
+	err = yaml.Unmarshal(yamlFile, &pipeline)
+	if err != nil {
+		log.Fatalf("Unmarshal: %v", err)
+	}
+
+	processTree := runner.NewProcessTree()
+	for _, step := range pipeline.Steps {
+		processTree.Register(step.Order, runner.NewProcess(step.Name, step.Scripts.Initial.Script, step.Scripts.Processing.Script, step.Scripts.Proceed.Script))
+	}
 
 	it := runner.NewRunner(processTree.Root())
 

@@ -1,0 +1,22 @@
+  steps:
+    - name: maker
+      order: 2
+      scripts:
+        initial:
+          script: "echo 'oi'"
+        processing:
+          script: ls -la
+        proceed: 
+          script: ls
+    
+    - name: updater
+      order: 1
+      scripts:
+        initial:
+          script: ls
+        processing:
+          script: ls -la
+        proceed: 
+          script: ls
+    
+    

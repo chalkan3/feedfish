@@ -9,8 +9,8 @@ type Process struct {
 	Job  *state.Job
 }
 
-func NewProcess(name string) *Process {
-	return &Process{Name: name, Job: state.NewJob()}
+func NewProcess(name string, initialScript string, processingScript string, proceedScript string) *Process {
+	return &Process{Name: name, Job: state.NewJob(initialScript, processingScript, proceedScript)}
 }
 
 func (u Process) GetName() string { return u.Name }

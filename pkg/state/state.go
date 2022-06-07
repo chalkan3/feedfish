@@ -1,5 +1,10 @@
 package state
 
+import (
+	"fmt"
+	"os/exec"
+)
+
 type State interface {
 	Do(defers chan bool, processName string)
 	Prompt(processName string)
@@ -13,11 +18,11 @@ type Job struct {
 	defers       chan bool
 }
 
-func NewJob() *Job {
+func NewJob(initialScript, processingScript, proceedScript string) *Job {
 	job := &Job{}
-	ProceedState := &Proceed{Job: job}
-	ProcessingState := &Process{Job: job}
-	InitialState := &Initial{Job: job}
+	ProceedState := &Proceed{Job: job, Script: proceedScript}
+	ProcessingState := &Process{Job: job, Script: processingScript}
+	InitialState := &Initial{Job: job, Script: initialScript}
 
 	job.SetState(InitialState)
 	job.Initial = InitialState
@@ -48,4 +53,16 @@ func (j *Job) Do(processName string) error {
 		}
 	}
 
+}
+
+func Shell(script string) {
+	cmd := exec.Command("/bin/bash", "-c", script)
+	stdout, err := cmd.Output()
+
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+
+	fmt.Println(string(stdout))
 }

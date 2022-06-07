@@ -1,15 +1,12 @@
 package state
 
-import (
-	"fmt"
-)
-
 type Proceed struct {
-	Job *Job
+	Job    *Job
+	Script string
 }
 
 func (p *Proceed) Do(defers chan bool, processName string) {
-	fmt.Println("proceed", processName)
+	Shell(p.Script)
 	defers <- false
 }
 
